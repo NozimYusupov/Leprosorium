@@ -10,10 +10,12 @@ def init_db
 end 
 
 before do
+  #initial data base
   init_db
 end
 
 configure do 
+  #initial data base
   init_db
   @db.execute 'CREATE TABLE IF NOT EXISTS "Posts" 
               ( 	
@@ -34,5 +36,9 @@ end
 post '/new' do
   content = params[:content]
 
+  if content.length <= 0
+    @error = 'Type post text'
+    return erb :new
+  end 
   erb "Your typed #{content}"
 end
