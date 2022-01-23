@@ -52,5 +52,12 @@ get '/details/:post_id' do
 
   results = @db.execute 'SELECT * FROM posts WHERE id = ?', [post_id]
   @row  = results[0]
-  erb :details 
+  erb :details   
 end
+
+post '/details/:post_id' do
+  post_id = params[:post_id]
+  content = params[:content]
+  
+  erb "You typed comment #{content} for post #{post_id}"
+end 
